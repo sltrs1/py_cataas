@@ -6,7 +6,8 @@ from datetime import datetime
 
 # --- Конфигурация ---
 FOLDER_NAME = "PY-140"  # Название папки на Яндекс.Диске
-JSON_FILENAME = "files_info.json"  # Имя выходного JSON-файла
+JSON_FILENAME_HEAD = "files_info_"  # Имя выходного JSON-файла
+JSON_FILENAME_TAIL = ".json"  # Имя выходного JSON-файла
 LOCAL_IMAGE_FILENAME = "temp_cat_image.jpg"  # Временное имя для локального сохранения
 CATAAS_API_URL = "https://cataas.com/cat/says/{}"  # Шаблон URL для API
 YANDEX_API_URL = "https://cloud-api.yandex.net/v1/disk/resources"
@@ -98,6 +99,7 @@ def main():
             'remote_path': f"disk:/{remote_path}"
         }
 
+        JSON_FILENAME = f"{JSON_FILENAME_HEAD}{user_text}{JSON_FILENAME_TAIL}"
         with open(JSON_FILENAME, 'w', encoding='utf-8') as f:
             json.dump(file_info, f, ensure_ascii=False, indent=2)
 
